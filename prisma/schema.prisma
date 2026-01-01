@@ -5,25 +5,133 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
 
 model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String?
+  password      String?   // Optional for OAuth
+  emailVerified DateTime?
+  image         String?   // NextAuth uses 'image' instead of 'avatar' usually, but we can map it. 
+  // Custom fields
+  phone         String?
+  address       String?
+  avatar        String?   // Keeping for backward compatibility or mapping
+  loyaltyPoints Int       @default(0)
+  language      String    @default("English")
+  currency      String    @default("USD")
+  bookings      Booking[]
+  accounts      Account[]
+  sessions      Session[]
+  notifications Notification[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  type      String   // BOOKING, SERVICE, LOYALTY
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Hotel {
   id        String    @id @default(uuid())
-  email     String    @unique
-  name      String?
-  password  String
+  name      String
+  location  String
+  rating    Float?
+  rooms     Room[]
   bookings  Booking[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+}
+
+model Room {
+  id            String    @id @default(uuid())
+  hotelId       String
+  hotel         Hotel     @relation(fields: [hotelId], references: [id])
+  type          String
+  capacity      Int
+  pricePerNight Float
+  floor         Int?
+  amenities     String? // Storing as string (e.g. JSON or comma separated) since SQLite doesn't support String[]
+  status        String    @default("available")
+  image         String?
+  bookings      Booking[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Booking {
   id           String    @id @default(uuid())
   userId       String
   user         User      @relation(fields: [userId], references: [id])
+  hotelId      String
+  hotel        Hotel     @relation(fields: [hotelId], references: [id])
+  roomId       String
+  room         Room      @relation(fields: [roomId], references: [id])
   checkInDate  DateTime
   checkOutDate DateTime
+  guests       Int
+  totalAmount  Float
   status       String // e.g., "pending", "confirmed", "checked-in", "checked-out", "cancelled"
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+}
+
+model ServiceRequest {
+  id          String   @id @default(uuid())
+  guestId     String
+  // Relation to user/guest? The mock data had guestId, probably relates to User.
+  // But let's keep it simple string for now unless we want relation.
+  // user User @relation(...)
+  type        String
+  description String
+  priority    String   @default("medium") // low, medium, high
+  status      String   @default("pending") // pending, in-progress, completed, cancelled
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
