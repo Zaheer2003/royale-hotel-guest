@@ -424,7 +424,7 @@ const GuestDashboard: React.FC = () => {
             </Badge>
             <Badge variant="outline" className="px-4 py-2 border-purple-500/50 text-purple-400 bg-purple-500/10 backdrop-blur-md">
               <Award className="w-4 h-4 mr-2" />
-              {user?.loyaltyPoints || 0} Royale Points
+              {user?.loyaltyPoints || 0} Royal Points
             </Badge>
           </div>
         </div>
@@ -1009,7 +1009,7 @@ const GuestDashboard: React.FC = () => {
                   <CardHeader>
                     <CardTitle className="text-white flex items-center gap-2">
                       <Award className="w-5 h-5 text-purple-400" />
-                      Royale Membership
+                      Royal Membership
                     </CardTitle>
                     <CardDescription className="text-purple-200/50 italic">Elite Loyalty Program</CardDescription>
                   </CardHeader>
@@ -1025,7 +1025,7 @@ const GuestDashboard: React.FC = () => {
                     <div className="p-4 bg-white/5 rounded-2xl border border-white/5 space-y-4">
                       <div className="space-y-1">
                         <p className="text-xs font-bold text-white uppercase tracking-wider">Rewards Tier</p>
-                        <p className="text-[#D1AE6A] font-serif italic text-lg">{(user?.loyaltyPoints || 0) > 1000 ? 'Platinum Royale' : (user?.loyaltyPoints || 0) > 500 ? 'Gold Elite' : 'Silver Member'}</p>
+                        <p className="text-[#D1AE6A] font-serif italic text-lg">{(user?.loyaltyPoints || 0) > 1000 ? 'Platinum Royal' : (user?.loyaltyPoints || 0) > 500 ? 'Gold Elite' : 'Silver Member'}</p>
                       </div>
                       <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
                         <div

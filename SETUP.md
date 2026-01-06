@@ -1,6 +1,6 @@
-# Royale Hotel - Guest Module Setup
+# Royal Hotel - Guest Module Setup
 
-This documentation provides steps to set up and run the Guest module of the Royale Hotel Management System.
+This documentation provides steps to set up and run the Guest module of the Royal Hotel Management System.
 
 ## Prerequisites
 

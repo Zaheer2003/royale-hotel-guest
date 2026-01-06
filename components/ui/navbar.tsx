@@ -76,7 +76,7 @@ export const Navbar: React.FC<{ className?: string }> = ({ className }) => {
             />
           </div>
           <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 hidden md:block">
-            Royale Hotel
+            Royal Hotel
           </span>
         </div>
 

@@ -78,7 +78,7 @@ export function BookingDetailDialog({ booking, trigger }: BookingDetailDialogPro
         let statementTitle = 'OFFICIAL GUEST STATEMENT';
         let accentColor = [209, 174, 106]; // Default Gold
         let billingLabel = 'TOTAL AMOUNT DUE & PAID';
-        let footerText = "Thank you for experiencing Royale Hotel. This document serves as a verified record of your stay.";
+        let footerText = "Thank you for experiencing Royal Hotel. This document serves as a verified record of your stay.";
 
         if (status === 'cancelled') {
             statementTitle = 'CANCELLATION STATEMENT';
@@ -89,7 +89,7 @@ export function BookingDetailDialog({ booking, trigger }: BookingDetailDialogPro
             statementTitle = 'FINAL GUEST RECEIPT';
             accentColor = [37, 99, 235]; // Blue-600
             billingLabel = 'TOTAL FINAL BILL';
-            footerText = "We hope you enjoyed your stay at Royale Hotel. This receipt confirms your final check-out and payment.";
+            footerText = "We hope you enjoyed your stay at Royal Hotel. This receipt confirms your final check-out and payment.";
         }
 
         // Guest Identity (Centered)
@@ -175,7 +175,7 @@ export function BookingDetailDialog({ booking, trigger }: BookingDetailDialogPro
         doc.text(`Generated on ${new Date().toLocaleString()}`, pageWidth - 20, 276, { align: 'right' });
 
         // Save PDF
-        doc.save(`Royale-Invoice-${booking.id.slice(0, 8)}.pdf`);
+        doc.save(`Royal-Invoice-${booking.id.slice(0, 8)}.pdf`);
     };
 
     const getStatusColor = (status: string) => {

@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Royale Hotel",
-  description: "Experience luxury and comfort at Royale Hotel",
+  title: "Royal Hotel",
+  description: "Experience luxury and comfort at Royal Hotel",
 };
 
 export default function RootLayout({

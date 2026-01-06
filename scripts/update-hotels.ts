@@ -4,11 +4,11 @@ const prisma = new PrismaClient();
 
 async function main() {
     const branches = [
-        { name: 'Royale Hotel Colombo', location: 'Colombo' },
-        { name: 'Royale Hotel Kandy', location: 'Kandy' },
-        { name: 'Royale Hotel Jaffna', location: 'Jaffna' },
-        { name: 'Royale Hotel Galle', location: 'Galle' },
-        { name: 'Royale Hotel Negombo', location: 'Negombo' }
+        { name: 'Royal Hotel Colombo', location: 'Colombo' },
+        { name: 'Royal Hotel Kandy', location: 'Kandy' },
+        { name: 'Royal Hotel Jaffna', location: 'Jaffna' },
+        { name: 'Royal Hotel Galle', location: 'Galle' },
+        { name: 'Royal Hotel Negombo', location: 'Negombo' }
     ];
 
     for (const branch of branches) {
