@@ -2,10 +2,10 @@ const fs = require('fs');
 const path = require('path');
 
 const envPath = path.join(process.cwd(), '.env');
-const content = `DATABASE_URL="file:./dev.db"
-AUTH_SECRET="generate_a_random_secret_here"
-AUTH_GOOGLE_ID="578779152986-5qsavegh6drhnnk2854o9d7eqlpsmi7j.apps.googleusercontent.com"
-AUTH_GOOGLE_SECRET="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"
+const content = `DATABASE_URL="postgresql://..."
+AUTH_SECRET="your_auth_secret"
+AUTH_GOOGLE_ID="your_google_id"
+AUTH_GOOGLE_SECRET="your_google_secret"
 `;
 
 fs.writeFileSync(envPath, content, { encoding: 'utf8' });
