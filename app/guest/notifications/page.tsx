@@ -54,10 +54,10 @@ export default function NotificationsPage() {
 
     const getTypeIcon = (type: string) => {
         switch (type) {
-            case 'BOOKING': return <Hotel className="w-5 h-5 text-[#D1AE6A]" />;
-            case 'SERVICE': return <Package className="w-5 h-5 text-blue-400" />;
-            case 'LOYALTY': return <CreditCard className="w-5 h-5 text-green-400" />;
-            default: return <Bell className="w-5 h-5 text-slate-400" />;
+            case 'BOOKING': return <Hotel className="w-6 h-6 text-[#D1AE6A]" />;
+            case 'SERVICE': return <Package className="w-6 h-6 text-blue-400" />;
+            case 'LOYALTY': return <CreditCard className="w-6 h-6 text-green-400" />;
+            default: return <Bell className="w-6 h-6 text-slate-400" />;
         }
     };
 
@@ -116,7 +116,7 @@ export default function NotificationsPage() {
                                             className={`group flex items-start gap-6 p-8 transition-all duration-300 ${!n.read ? 'bg-white/[0.04]' : 'hover:bg-white/[0.02]'}`}
                                         >
                                             <div className={`mt-1 w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center border transition-all duration-500 ${!n.read ? 'bg-white/10 border-[#D1AE6A]/20 shadow-lg shadow-[#D1AE6A]/5' : 'bg-white/5 border-white/5'}`}>
-                                                {React.cloneElement(getTypeIcon(n.type) as React.ReactElement, { className: "w-6 h-6 " + (getTypeIcon(n.type) as React.ReactElement).props.className.split(' ').filter((c: string) => !c.startsWith('w-') && !c.startsWith('h-')).join(' ') })}
+                                                {getTypeIcon(n.type)}
                                             </div>
                                             <div className="flex-1 space-y-2">
                                                 <div className="flex items-center justify-between">
